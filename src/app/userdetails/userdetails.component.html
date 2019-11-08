@@ -1,0 +1,54 @@
+
+
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+               Name
+            </th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+            <th>Comment</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of userData; let i=index">
+            <td>
+                <mat-form-field *ngIf="editFields == i && !editdata" type="text">
+                    <input matInput  [(ngModel)]="item.name">
+                </mat-form-field>
+                <p *ngIf="editFields != i  || editdata">{{item.name}}</p>
+            </td>
+            <td>
+                <mat-form-field *ngIf="editFields == i && !editdata" type="text">
+                    <input matInput [(ngModel)]="item.email">
+                </mat-form-field>
+                <p *ngIf="editFields != i  || editdata">{{item.email}}</p>
+            </td>
+            <td>
+                <mat-form-field *ngIf="editFields == i && !editdata" type="text">
+                    <input  matInput [(ngModel)]="item.phnumber">
+                </mat-form-field>
+                <p *ngIf="editFields != i || editdata">{{item.phnumber}}</p>
+            </td>
+            <td>
+                <mat-form-field *ngIf="editFields == i && !editdata" type="text">
+                    <input matInput [(ngModel)]="item.dateofbirth">
+                </mat-form-field><p *ngIf="editFields != i || editdata">{{item.dateofbirth | date: 'dd/MM/yyyy'}}</p>
+            </td>
+            <td>
+                <mat-form-field *ngIf="editFields == i && !editdata" type="text">
+                    <input matInput [(ngModel)]="item.comment">
+                </mat-form-field><p *ngIf="editFields != i || editdata">{{item.comment}}</p>
+            </td>
+            <td>
+                <button mat-raised-button color="accent"  *ngIf="editFields != i || editdata" (click)="EditFields(i,item)  ">Edit</button>
+                <button mat-raised-button color="primary" *ngIf="editFields == i && !editdata " (click)="SaveFields(i,item) ">Save</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
